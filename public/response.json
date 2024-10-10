@@ -5,6 +5,8 @@
         "name": "Product A",
         "id": 12456,
         "image_url": "https://picsum.photos/id/237/200/300",
+        "room_type": "group",
+        "created_at": "2024-10-10T10:00:00Z",
         "participant": [
           {
             "id": "admin@mail.com",
@@ -28,31 +30,201 @@
           "id": 885512,
           "type": "text",
           "message": "Selamat malam",
-          "sender": "customer@mail.com"
+          "sender": "customer@mail.com",
+          "created_at": "2024-10-10T10:05:00Z"
         },
         {
           "id": 885513,
           "type": "text",
           "message": "Malam",
-          "sender": "agent@mail.com"
+          "sender": "agent@mail.com",
+          "created_at": "2024-10-10T10:06:00Z"
         },
         {
           "id": 885514,
           "type": "text",
           "message": "Ada yang bisa saya bantu?",
-          "sender": "agent@mail.com"
+          "sender": "agent@mail.com",
+          "created_at": "2024-10-10T10:07:00Z"
         },
         {
           "id": 885515,
           "type": "text",
           "message": "Saya ingin mengirimkan bukti pembayaran, karena diaplikasi selalu gagal",
-          "sender": "customer@mail.com"
+          "sender": "customer@mail.com",
+          "created_at": "2024-10-10T10:08:00Z"
         },
         {
           "id": 885516,
           "type": "text",
           "message": "Baik, silahkan kirimkan lampiran bukti pembayarannya",
-          "sender": "agent@mail.com"
+          "sender": "agent@mail.com",
+          "created_at": "2024-10-10T10:09:00Z"
+        },
+        {
+          "id": 885517,
+          "type": "file",
+          "message": "ini kak",
+          "sender": "customer@mail.com",
+          "created_at": "2024-10-10T10:10:00Z",
+          "files": [
+            {
+              "file_type": "pdf",
+              "file_name": "bukti_pembayaran.pdf",
+              "file_size": 0.6,
+              "file_url": "/1.pdf"
+            }
+          ]
+        },
+        {
+          "id": 885518,
+          "type": "text",
+          "message": "Baik akan kami catat. Sebagai informasi, untuk pengiriman produk hanya bisa kami lakukan pada hari Senin dan Kamis.",
+          "sender": "admin@mail.com",
+          "created_at": "2024-10-10T10:11:00Z"
+        }
+      ]
+    },
+    {
+      "room": {
+        "name": "~siti halimah",
+        "id": 12457,
+        "room_type": "personal",
+        "image_url": "https://picsum.photos/id/555/200/300",
+        "created_at": "2024-10-10T11:00:00Z",
+        "participant": [
+          {
+            "id": "agent@mail.com",
+            "name": "Agent A"
+          },
+          {
+            "id": "customer2@mail.com",
+            "name": "Siti H."
+          }
+        ]
+      },
+      "comments": [
+        {
+          "id": 885533,
+          "type": "file",
+          "message": "Halo, saya tertarik dengan produk ini dan ingin bertanya lebih lanjut",
+          "sender": "customer2@mail.com",
+          "created_at": "2024-10-10T11:05:00Z",
+          "files": [
+            {
+              "file_type": "image",
+              "file_name": "produk.jpg",
+              "file_size": 1.0,
+              "file_url": "https://picsum.photos/id/96/200/300"
+            }
+          ]
+        },
+        {
+          "id": 885534,
+          "type": "text",
+          "message": "Silahkan kak",
+          "sender": "agent@mail.com",
+          "created_at": "2024-10-10T11:06:00Z"
+        }
+      ]
+    },
+    {
+      "room": {
+        "name": "Agents Group Chat",
+        "id": 12458,
+        "image_url": "https://picsum.photos/id/100/200/300",
+        "room_type": "group",
+        "created_at": "2024-10-10T12:00:00Z",
+        "participant": [
+          {
+            "id": "agent@mail.com",
+            "name": "Agent A"
+          },
+          {
+            "id": "agentb@mail.com",
+            "name": "Agent B"
+          },
+          {
+            "id": "agentc@mail.com",
+            "name": "Agent C"
+          },
+          {
+            "id": "agentz@mail.com",
+            "name": "Agent Z"
+          }
+        ]
+      },
+      "comments": [
+        {
+          "id": 885555,
+          "type": "text",
+          "message": "Guys can anyone send me a recap of yesterday's visit",
+          "sender": "agentz@mail.com",
+          "created_at": "2024-10-10T12:05:00Z"
+        },
+        {
+          "id": 885556,
+          "type": "text",
+          "message": "Me",
+          "sender": "agentb@mail.com",
+          "created_at": "2024-10-10T12:06:00Z"
+        },
+        {
+          "id": 885557,
+          "type": "file",
+          "message": "Here, sir",
+          "sender": "agentb@mail.com",
+          "created_at": "2024-10-10T12:07:00Z",
+          "files": [
+            {
+              "file_type": "mp4",
+              "file_name": "agents_visit.mp4",
+              "file_size": 5.0,
+              "file_url": "/video.mp4"
+            }
+          ]
+        },
+        {
+          "id": 885558,
+          "type": "file",
+          "message": "Not a video, but i took some pics",
+          "sender": "agent@mail.com",
+          "created_at": "2024-10-10T12:08:00Z",
+          "files": [
+            {
+              "file_type": "image",
+              "file_name": "1.jpg",
+              "file_size": 1.2,
+              "file_url": "https://picsum.photos/id/111/200/300"
+            },
+            {
+              "file_type": "image",
+              "file_name": "2.jpg",
+              "file_size": 0.7,
+              "file_url": "https://picsum.photos/id/222/200/300"
+            }
+          ]
+        },
+        {
+          "id": 885559,
+          "type": "text",
+          "message": "Sorry I'm not joining the event, anyway thanks all",
+          "sender": "agentc@mail.com",
+          "created_at": "2024-10-10T12:09:00Z"
+        },
+        {
+          "id": 885560,
+          "type": "text",
+          "message": "It's ok C",
+          "sender": "agentz@mail.com",
+          "created_at": "2024-10-10T12:10:00Z"
+        },
+        {
+          "id": 885561,
+          "type": "text",
+          "message": "Thank you all",
+          "sender": "agentz@mail.com",
+          "created_at": "2024-10-10T12:11:00Z"
         }
       ]
     }

@@ -20,20 +20,24 @@ const RoomInfo = ({ active, isOpen, handleClose }) => {
       />
       {/* Room Name */}
       <h2 className="text-3xl font-semibold mb-4">{active.name}</h2>
-      <div className="text-lg text-slate-500 rounded-full border border-slate-500 px-2">
-        Group chat room
-      </div>
-
-      <div className="flex flex-col mt-12">
-        <p className="text-lg font-semibold">
-          Participants: {active.participant.length}
-        </p>
-        {active.participant.map((participant) => (
-          <div key={participant.id} className="mt-2 text-center">
-            {participant.name}
+      {active.room_type === "group" && (
+        <>
+          <div className="text-lg text-slate-500 rounded-full border border-slate-500 px-2">
+            Group chat room
           </div>
-        ))}
-      </div>
+
+          <div className="flex flex-col mt-12">
+            <p className="text-lg font-semibold">
+              Participants: {active.participant.length}
+            </p>
+            {active.participant.map((participant) => (
+              <div key={participant.id} className="mt-2 text-center">
+                {participant.name}
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
@@ -43,6 +47,7 @@ RoomInfo.propTypes = {
     image_url: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     participant: PropTypes.array.isRequired,
+    room_type: PropTypes.string.isRequired,
   }).isRequired,
   isOpen: PropTypes.bool,
   handleClose: PropTypes.func,

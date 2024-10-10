@@ -7,6 +7,7 @@ import {
   MagnifyingGlassIcon,
   StarIcon,
   Bars3Icon,
+  ChevronDoubleLeftIcon,
 } from "@heroicons/react/24/outline";
 import ChatView from "./ChatView";
 
@@ -32,12 +33,9 @@ function App() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log(chatData);
-  }, [chatData]);
-  useEffect(() => {
-    console.log(activeRoom);
-  }, [activeRoom]);
+  // useEffect(() => {
+  //   console.log(activeRoom);
+  // }, [activeRoom]);
 
   return (
     <div className="flex h-screen max-w-full relative overflow-hidden">
@@ -68,11 +66,15 @@ function App() {
 
       {/* Chat List */}
       <div className="w-full h-screen md:w-1/3 border-r border-slate-100">
-        <div className="md:hidden px-6 pt-6">
-          <Bars3Icon
-            className="size-10"
-            onClick={() => setMobileNavOpen(!mobileNavOpen)}
-          />
+        <div
+          className="md:hidden px-6 pt-6"
+          onClick={() => setMobileNavOpen(!mobileNavOpen)}
+        >
+          {mobileNavOpen ? (
+            <ChevronDoubleLeftIcon className="size-10" />
+          ) : (
+            <Bars3Icon className="size-10" />
+          )}
         </div>
 
         <div className="border-b border-slate-100 p-6">
@@ -95,7 +97,7 @@ function App() {
               {chatData.map((item) => (
                 <li
                   key={item.room.id}
-                  className={`flex gap-4 md:gap-6 text-xl md:p-4 cursor-pointer ${
+                  className={`flex gap-4 md:gap-6 text-xl md:px-4 py-2 cursor-pointer ${
                     activeRoom === item.room.id ? "bg-purple-100" : ""
                   }`}
                   onClick={() => {
@@ -108,8 +110,14 @@ function App() {
                     className="w-16 h-16 rounded-full"
                   />
                   <div className="w-3/4">
-                    <p className="font-semibold">{item.room.name}</p>
+                    <p className="font-semibold">
+                      {item.room.name}
+                      {item.room.room_type === "group" &&
+                        ` (${item.room.participant.length})`}
+                    </p>
                     <p className="text-md text-gray-500 truncate">
+                      {item.comments[item.comments.length - 1].sender ===
+                        "agent@mail.com" && "Me: "}
                       {item.comments[item.comments.length - 1].message}
                     </p>
                   </div>
