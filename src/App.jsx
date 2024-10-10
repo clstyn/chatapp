@@ -6,6 +6,7 @@ import {
   CalendarIcon,
   MagnifyingGlassIcon,
   StarIcon,
+  Bars3Icon,
 } from "@heroicons/react/24/outline";
 import ChatView from "./ChatView";
 
@@ -13,6 +14,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [chatData, setChatData] = useState([]);
   const [activeRoom, setActiveRoom] = useState(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -40,10 +42,16 @@ function App() {
   return (
     <div className="flex h-screen max-w-full relative overflow-hidden">
       {/* Navbar */}
-      <div className="w-24 shadow-lg flex flex-col justify-between p-3">
+      <div
+        className={`${
+          mobileNavOpen
+            ? "max-md:w-1/4 max-md:items-center"
+            : "max-md:w-0 max-md:overflow-hidden max-md:p-0"
+        } w-24 shadow-lg flex flex-col justify-between p-3 transition-width duration-300`}
+      >
         <div>
           <div className="w-full aspect-square flex items-center justify-center rounded-xl bg-blue-600 text-white font-bold text-xl">
-            KC
+            AA
           </div>
           <div className="flex flex-col gap-10 w-full p-4 mt-16">
             <ChatBubbleBottomCenterTextIcon className="size-10 text-purple-500" />
@@ -59,7 +67,14 @@ function App() {
       </div>
 
       {/* Chat List */}
-      <div className="w-1/3 border-r border-slate-100">
+      <div className="w-full h-screen md:w-1/3 border-r border-slate-100">
+        <div className="md:hidden px-6 pt-6">
+          <Bars3Icon
+            className="size-10"
+            onClick={() => setMobileNavOpen(!mobileNavOpen)}
+          />
+        </div>
+
         <div className="border-b border-slate-100 p-6">
           <p className="font-semibold text-2xl ">Messages</p>
         </div>
@@ -80,19 +95,21 @@ function App() {
               {chatData.map((item) => (
                 <li
                   key={item.room.id}
-                  className={`flex text-xl p-4 cursor-pointer ${
+                  className={`flex gap-4 md:gap-6 text-xl md:p-4 cursor-pointer ${
                     activeRoom === item.room.id ? "bg-purple-100" : ""
                   }`}
-                  onClick={() => setActiveRoom(item.room.id)}
+                  onClick={() => {
+                    setActiveRoom(item.room.id);
+                  }}
                 >
                   <img
                     src={item.room.image_url}
                     alt={`${item.room.name} thumbnail`}
-                    className="w-16 h-16 rounded-full mr-4"
+                    className="w-16 h-16 rounded-full"
                   />
-                  <div>
+                  <div className="w-3/4">
                     <p className="font-semibold">{item.room.name}</p>
-                    <p className="text-md text-gray-500">
+                    <p className="text-md text-gray-500 truncate">
                       {item.comments[item.comments.length - 1].message}
                     </p>
                   </div>
@@ -107,10 +124,19 @@ function App() {
         </div>
       </div>
 
-      <div className="flex-1">
+      <div
+        className={`${
+          activeRoom
+            ? "max-md:absolute max-md:top-0 max-md:left-0"
+            : "max-md:hidden"
+        } flex-1`}
+      >
         {activeRoom ? (
           <ChatView
             active={chatData.find((item) => item.room.id === activeRoom)}
+            closeChat={() => {
+              setActiveRoom(null);
+            }}
           ></ChatView>
         ) : (
           <div className="flex h-full items-center justify-center bg-purple-50">

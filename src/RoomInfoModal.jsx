@@ -9,7 +9,7 @@ const RoomInfo = ({ active, isOpen, handleClose }) => {
       } w-full bg-white z-50 flex flex-col items-center justify-center transition-all duration-300`}
     >
       <XMarkIcon
-        className="size-10 absolute top-24 left-24"
+        className="size-10 absolute top-12 left-12 md:top-24 md:left-24"
         onClick={handleClose}
       />
       {/* Room Image */}
@@ -20,6 +20,9 @@ const RoomInfo = ({ active, isOpen, handleClose }) => {
       />
       {/* Room Name */}
       <h2 className="text-3xl font-semibold mb-4">{active.name}</h2>
+      <div className="text-lg text-slate-500 rounded-full border border-slate-500 px-2">
+        Group chat room
+      </div>
 
       <div className="flex flex-col mt-12">
         <p className="text-lg font-semibold">

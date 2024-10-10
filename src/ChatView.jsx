@@ -1,13 +1,16 @@
 import PropTypes from "prop-types";
-import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
+import {
+  PaperAirplaneIcon,
+  ChevronLeftIcon,
+} from "@heroicons/react/24/outline";
 import { useState } from "react";
 import RoomInfo from "./RoomInfoModal";
 
-const ChatView = ({ active }) => {
+const ChatView = ({ active, closeChat }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex flex-col h-full relative">
+    <div className="flex flex-col h-screen relative">
       {/* Room Info Modal */}
       <RoomInfo
         active={active.room}
@@ -16,18 +19,21 @@ const ChatView = ({ active }) => {
       />
 
       {/* Chat Header */}
-      <div
-        className="flex gap-4 h-18 items-center px-8 py-6 border-slate-100 border-b"
-        onClick={() => setIsOpen(true)}
-      >
-        <img
-          src={active.room.image_url}
-          alt={`${active.room.name} thumbnail`}
-          className="w-16 h-16 rounded-full"
-        />
-        <p className="text-xl font-medium">
-          {active.room.name} ({active.room.participant.length})
-        </p>
+      <div className="cursor-pointer flex gap-4 h-18 items-center px-8 py-6 border-slate-100 border-b bg-white">
+        <ChevronLeftIcon className="size-8" onClick={closeChat} />
+        <div
+          className="flex gap-4 items-center"
+          onClick={() => setIsOpen(true)}
+        >
+          <img
+            src={active.room.image_url}
+            alt={`${active.room.name} thumbnail`}
+            className="w-16 h-16 rounded-full"
+          />
+          <p className="text-xl font-medium">
+            {active.room.name} ({active.room.participant.length})
+          </p>
+        </div>
       </div>
 
       {/* Scrollable Chat Section */}
@@ -78,6 +84,7 @@ const ChatView = ({ active }) => {
 
 ChatView.propTypes = {
   active: PropTypes.object,
+  closeChat: PropTypes.func,
 };
 
 export default ChatView;
