@@ -33,6 +33,26 @@ function App() {
     fetchData();
   }, []);
 
+  function dummySend(roomId, msg) {
+    const roomIndex = chatData.findIndex((item) => item.room.id === roomId);
+
+    const newComment = {
+      id: Math.floor(Math.random() * 10000) + 1,
+      type: "text",
+      message: msg,
+      sender: "agent@mail.com",
+      created_at: new Date().toISOString(),
+    };
+
+    const updatedRooms = [...chatData];
+    updatedRooms[roomIndex] = {
+      ...updatedRooms[roomIndex],
+      comments: [...updatedRooms[roomIndex].comments, newComment],
+    };
+
+    setChatData(updatedRooms);
+  }
+
   // useEffect(() => {
   //   console.log(activeRoom);
   // }, [activeRoom]);
@@ -145,6 +165,7 @@ function App() {
             closeChat={() => {
               setActiveRoom(null);
             }}
+            send={dummySend}
           ></ChatView>
         ) : (
           <div className="flex h-full items-center justify-center bg-purple-50">

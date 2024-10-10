@@ -7,8 +7,9 @@ import { DocumentIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import RoomInfo from "./RoomInfoModal";
 
-const ChatView = ({ active, closeChat }) => {
+const ChatView = ({ active, closeChat, send }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [msgToSend, setMsgToSend] = useState("");
 
   function convertTime(inputTimestamp) {
     const date = new Date(inputTimestamp);
@@ -19,6 +20,30 @@ const ChatView = ({ active, closeChat }) => {
     return formattedTime;
   }
 
+  function convertDate(inputTimestamp) {
+    const date = new Date(inputTimestamp);
+    const monthName = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Mei",
+      "Jun",
+      "Jul",
+      "Agu",
+      "Sep",
+      "Okt",
+      "Nov",
+      "Des",
+    ];
+    const day = date.getDate();
+    const month = monthName[date.getMonth()];
+    const year = date.getFullYear();
+
+    const formattedTime = `${day} ${month} ${year}`;
+    return formattedTime;
+  }
+
   return (
     <div className="flex flex-col h-screen relative">
       {/* Room Info Modal */}
@@ -26,6 +51,7 @@ const ChatView = ({ active, closeChat }) => {
         active={active.room}
         isOpen={isOpen}
         handleClose={() => setIsOpen(false)}
+        convertTime={convertDate}
       />
 
       {/* Chat Header */}
@@ -138,8 +164,12 @@ const ChatView = ({ active, closeChat }) => {
           type="text"
           className="flex-grow px-4 py-3 rounded-full bg-white border border-gray-300 focus:outline-none"
           placeholder="Type a message..."
+          onChange={(e) => setMsgToSend(e.target.value)}
         />
-        <button className="ml-4 p-4 bg-purple-500 text-white rounded-full hover:scale-105">
+        <button
+          onClick={() => send(active.room.id, msgToSend)}
+          className="ml-4 p-4 bg-purple-500 text-white rounded-full hover:scale-105"
+        >
           <PaperAirplaneIcon className="size-6 -rotate-45" />
         </button>
       </div>
@@ -150,6 +180,7 @@ const ChatView = ({ active, closeChat }) => {
 ChatView.propTypes = {
   active: PropTypes.object,
   closeChat: PropTypes.func,
+  send: PropTypes.func,
 };
 
 export default ChatView;

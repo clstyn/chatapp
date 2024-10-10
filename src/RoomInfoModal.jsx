@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
-const RoomInfo = ({ active, isOpen, handleClose }) => {
+const RoomInfo = ({ active, isOpen, handleClose, convertTime }) => {
   return (
     <div
       className={`absolute ${
@@ -20,6 +20,7 @@ const RoomInfo = ({ active, isOpen, handleClose }) => {
       />
       {/* Room Name */}
       <h2 className="text-3xl font-semibold mb-4">{active.name}</h2>
+
       {active.room_type === "group" && (
         <>
           <div className="text-lg text-slate-500 rounded-full border border-slate-500 px-2">
@@ -38,6 +39,10 @@ const RoomInfo = ({ active, isOpen, handleClose }) => {
           </div>
         </>
       )}
+
+      <p className="mt-6 text-slate-700">
+        Created at: {convertTime(active.created_at)}
+      </p>
     </div>
   );
 };
@@ -48,9 +53,11 @@ RoomInfo.propTypes = {
     name: PropTypes.string.isRequired,
     participant: PropTypes.array.isRequired,
     room_type: PropTypes.string.isRequired,
+    created_at: PropTypes.string,
   }).isRequired,
   isOpen: PropTypes.bool,
   handleClose: PropTypes.func,
+  convertTime: PropTypes.func,
 };
 
 export default RoomInfo;
